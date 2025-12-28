@@ -14,7 +14,11 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::limit('5')->get();
-        return $products;
+        
+        return response()->json([
+            'status' => 1,
+            'data' => $products
+        ]);
     }
 
     /**
