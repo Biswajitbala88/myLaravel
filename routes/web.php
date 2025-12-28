@@ -1,0 +1,18 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+
+Route::get('/test', [UserController::class, 'index']);
+Route::get('/env-check', function () {
+    return App::environment();
+});
+
+Route::get('/get-pdf', [UserController::class, 'getPdf']);
+
+
