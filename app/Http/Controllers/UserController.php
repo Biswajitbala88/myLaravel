@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use PDF;
+use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\App;
@@ -30,5 +31,24 @@ class UserController extends Controller
         // return view('mypdf', $pdf);
         return $pdf->download('inv.pdf');
 
+    }
+
+    // fileUplaod
+    public function fileUploadForm(){
+        return view('fileUpload');
+    }
+    public function fileUpload(Request $request){
+        // echo '<pre>'; print_r($request->all()); exit;
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|max:2048'
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+        $file = $request->file('file');
+        $fileName = time().'-'.$file->getClientOriginalName();
+        $file->move(public_path('uploads'), $fileName);
+        // $file->storeAs('uploads', $fileName, 'public');
+        return back()->with('success', 'File uploaded successfully')->with('file', $fileName);
     }
 }

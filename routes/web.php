@@ -16,3 +16,5 @@ Route::get('/env-check', function () {
 Route::get('/get-pdf', [UserController::class, 'getPdf']);
 
 
+Route::get('/file-upload', [UserController::class, 'fileUploadForm']);
+Route::post('/upload', [UserController::class, 'fileUpload']);
