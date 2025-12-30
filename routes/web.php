@@ -18,3 +18,6 @@ Route::get('/get-pdf', [UserController::class, 'getPdf']);
 
 Route::get('/file-upload', [UserController::class, 'fileUploadForm']);
 Route::post('/upload', [UserController::class, 'fileUpload']);
+
+// send mail
+Route::get('/send-demo-mail', [UserController::class, 'sendDemoMail']);

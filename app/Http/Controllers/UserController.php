@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\DemoMail;
 
 class UserController extends Controller
 {
@@ -50,5 +52,16 @@ class UserController extends Controller
         $file->move(public_path('uploads'), $fileName);
         // $file->storeAs('uploads', $fileName, 'public');
         return back()->with('success', 'File uploaded successfully')->with('file', $fileName);
+    }
+
+    // send demo mail
+    public function sendDemoMail(){
+        $mailData = [
+            'title' => 'Mail from MyLaravelApp',
+            'body' => 'This is for testing email using smtp'
+        ];
+        Mail::to('biswajitbala88@gmail.com')->send(new DemoMail($mailData));
+        echo 'send demo mail';
+
     }
 }
