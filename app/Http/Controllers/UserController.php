@@ -37,7 +37,11 @@ class UserController extends Controller
 
     // fileUplaod
     public function fileUploadForm(){
-        return view('fileUpload');
+        $data = [
+            'title' => 'File Upload Demo',
+            'created_at' => dateYmdToMdy('2024-06-30')
+        ];
+        return view('fileUpload', $data);
     }
     public function fileUpload(Request $request){
         // echo '<pre>'; print_r($request->all()); exit;
