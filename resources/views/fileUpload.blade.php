@@ -12,6 +12,9 @@
             File Name: {{ session('file') }}
         </div>
         @endif
+
+        {{ $title }} <br>
+        Created At: {{ $created_at }} <br><br>
         <form action="/upload" method="post" enctype="multipart/form-data">
             @csrf
             <input type="file" name="file">
