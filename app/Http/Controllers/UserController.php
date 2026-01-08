@@ -14,12 +14,14 @@ use App\Mail\DemoMail;
 class UserController extends Controller
 {
     public function index(){
-        echo '<pre>'; print_r(App::environment()); exit;
-        if (App::environment() == 'staginng'){
-            echo 'test';
-        }else{
-            echo 'test 2';
-        }
+        $user = User::findOrFail(1);
+        // echo '<pre>'; print_r($user); exit;
+        $user->update([
+              'name' => 'Test User',
+              'email' => 'testuser'.time().'@example.com',
+              'password' => 'password123'
+        ]);
+       return response()->json($user);
     }
 
     public function getPdf(){
