@@ -8,7 +8,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/test', [UserController::class, 'index']);
+Route::get('/user', [UserController::class, 'index']);
 Route::get('/env-check', function () {
     return App::environment();
 });

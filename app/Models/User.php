@@ -24,6 +24,29 @@ class User extends Authenticatable
         'password',
     ];
 
+    protected static function booted(): void
+    {
+        static::creating(function(User $user){
+            info('usrer creating: '.$user->email);
+        });
+        static::created(function(User $user){
+            info('user created: '.$user->email);
+        });
+        static::updating(function(User $user){
+            // static::updated();
+            info('user updating: '.$user->email);
+        });
+        static::updated(function(User $user){
+            info('user updated: '.$user->email);
+        });
+        static::deleting(function(User $user){
+            info('user deleting: '.$user->email);
+        });
+        static::deleted(function(User $user){
+            info('user deleted: '.$user->email);
+        });
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
