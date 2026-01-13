@@ -21,3 +21,6 @@ Route::post('/upload', [UserController::class, 'fileUpload']);
 
 // send mail
 Route::get('/send-demo-mail', [UserController::class, 'sendDemoMail']);
+
+// generate QR code
+Route::get('/generate-qr-code', [UserController::class, 'generateQrCode']);

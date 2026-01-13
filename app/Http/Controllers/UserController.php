@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use PDF;
 use Illuminate\Support\Facades\Validator;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+
 
 use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\App;
@@ -69,5 +71,12 @@ class UserController extends Controller
         Mail::to('biswajitbala88@gmail.com')->send(new DemoMail($mailData));
         echo 'send demo mail';
 
+    }
+
+    public function generateQrCode(){
+        $data = 'https://www.example.com';
+        // return QrCode::size(300)->generate($data);
+        return QrCode::size(500)
+                 ->email('hardik@itsolutionstuff.com', 'Welcome to ItSolutionStuff.com!', 'This is !.');
     }
 }
