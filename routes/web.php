@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\StripePaymentController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,4 +22,19 @@ Route::middleware('auth')->group(function () {
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('callback-url', [GoogleController::class, 'handleGoogleCallback']);
 
-require __DIR__.'/auth.php';
+Route::get('/get-pdf', [UserController::class, 'getPdf']);
+
+
+Route::get('/file-upload', [UserController::class, 'fileUploadForm']);
+Route::post('/upload', [UserController::class, 'fileUpload']);
+
+// send mail
+Route::get('/send-demo-mail', [UserController::class, 'sendDemoMail']);
+
+// generate QR code
+Route::get('/generate-qr-code', [UserController::class, 'generateQrCode']);
+
+Route::controller(StripePaymentController::class)->group(function(){
+    Route::get('stripe', 'stripe');
+    Route::post('stripe', 'stripePost')->name('stripe.post');
+});

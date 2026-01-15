@@ -40,4 +40,9 @@ return [
         'redirect' => 'http://127.0.0.1:9000/callback-url',
     ],
 
+    'stripe' => [
+        'key' => env('STRIPE_KEY'),
+        'secret' => env('STRIPE_SECRET'),
+    ],
+
 ];
