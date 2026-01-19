@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\DemoMail;
+use App\Rules\BirthYearRule;
+
 
 class UserController extends Controller
 {
@@ -79,4 +81,20 @@ class UserController extends Controller
         return QrCode::size(500)
                  ->email('hardik@itsolutionstuff.com', 'Welcome to ItSolutionStuff.com!', 'This is !.');
     }
+
+    public function ruleForm(){
+        return view('rule-form');
+    }
+    public function ruleFormPost(Request $request){
+        $validator = $request->validate([
+                'name' => 'required',
+                'birth_year' => new BirthYearRule(),
+            ]);
+        echo '<pre>'; print_r($validator); exit;
+        
+    }
+
+
+
+
 }
