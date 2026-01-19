@@ -38,3 +38,8 @@ Route::controller(StripePaymentController::class)->group(function(){
     Route::get('stripe', 'stripe');
     Route::post('stripe', 'stripePost')->name('stripe.post');
 });
+
+Route::get('/rule-form', [UserController::class, 'ruleForm']);
+Route::post('/rule-form-post', [UserController::class, 'ruleFormPost'])->name('custom.validation.post');
+
+
