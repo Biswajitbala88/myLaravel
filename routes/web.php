@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StripePaymentController;
+use App\Http\Controllers\ChatGPTController;
 
 
 Route::get('/', function () {
@@ -41,5 +42,8 @@ Route::controller(StripePaymentController::class)->group(function(){
 
 Route::get('/rule-form', [UserController::class, 'ruleForm']);
 Route::post('/rule-form-post', [UserController::class, 'ruleFormPost'])->name('custom.validation.post');
+
+Route::get('/chatgpt', [ChatGPTController::class, 'index']);
+Route::post('/chatgptPost', [ChatGPTController::class, 'getResponse'])->name('chatgpt.response');
 
 
