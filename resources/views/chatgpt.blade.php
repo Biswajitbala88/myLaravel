@@ -10,7 +10,7 @@
         <div class="card mt-5">
             <h3 class="card-header p-3">Laravel 12 Integrate Chat GPT API Example</h3>
             <div class="card-body"> 
-                <form method="POST" action="{{ route('chatgpt.response') }}" >
+                <form method="POST" action="{{ route('chatgpt.getResponse') }}" >
                     @csrf
                     <div class="form-group">
                         <label><strong>Give me your title, I will provide you domains list.</strong></label>
